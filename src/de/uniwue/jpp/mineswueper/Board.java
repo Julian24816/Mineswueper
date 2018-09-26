@@ -3,6 +3,7 @@ package de.uniwue.jpp.mineswueper;
 import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Board {
     private static final int[][] dir = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
@@ -66,12 +67,12 @@ public class Board {
         if (field.hasMine() || field.getNeighbourMineCount()!=0)
             return new RevealFieldsResult(Collections.singleton(field));
 
-        return new RevealFieldsResult(Arrays.stream(dir)
+        return new RevealFieldsResult(Stream.concat(Stream.of(field), Arrays.stream(dir)
                 .map(ints -> new Coordinate(field.getCoordinate(), ints[0], ints[1]))
                 .filter(fields::containsKey)
                 .map(fields::get)
                 .map(field1 -> revealFields(field1.getCoordinate()).getRevealedFields())
-                .flatMap(Collection::stream)
+                .flatMap(Collection::stream))
                 .collect(Collectors.toList()));
     }
 
