@@ -2,8 +2,8 @@ package de.uniwue.jpp.mineswueper;
 
 public class Level {
 
-    public static final Level Beginner = new Level(9,9,19,"Beginner");
-    public static final Level Intermediate = new Level(16,16,40,"Intermediate");
+    public static final Level Beginner = new Level(9, 9, 10, "Beginner");
+    public static final Level Intermediate = new Level(16, 16, 40, "Intermediate");
     public static final Level Expert = new Level(30, 16, 99, "Expert");
 
     private final int width, height, mineCount;
